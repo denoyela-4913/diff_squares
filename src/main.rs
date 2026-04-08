@@ -4,33 +4,26 @@
 // Somme des carrés des n premiers entiers impairs (de 1 à 2n-1) = n(2n-1)(2n+1)/3
 
 pub fn square_of_sum(n: u32) -> u32 {
-    //todo!("square of sum of 1...{n}")
-    // let sum = n * (n + 1) / 2;
+    // Debug sum = n * (n + 1) / 2;
     let sum = n
         .checked_mul(n + 1)
         .unwrap_or_else(|| panic!("overflow 1 in square_of_sum formula when multiplying {n} and {}", n + 1))
         / 2;
-        //.expect(format!("overflow 1 in square_of_sum formula when multiplying {n} and {}", n + 1).as_str())
     // sum * sum
     sum.checked_mul(sum)
         .unwrap_or_else(|| panic!("overflow 2 in square_of_sum formula when squaring the sum of {sum} for {n}"))
-        // .expect(format!("overflow 2 in square_of_sum formula when squaring the sum of {sum} for {n}").as_str())
 }
 
 pub fn sum_of_squares(n: u32) -> u32 {
-    //todo!("sum of squares of 1...{n}")
-    // let sum_squares = n * (n + 1) * (2 * n + 1) / 6;
+    // Debug sum_squares = n * (n + 1) * (2 * n + 1) / 6;
     n.checked_mul(n + 1)
-        // .expect(format!("overflow 1 in sum_of_squares formula when multiplying {n} and {}", n + 1).as_str())
         .unwrap_or_else(|| panic!("overflow 1 in sum_of_squares formula when multiplying {n} and {}", n + 1))
         .checked_mul(2 * n + 1)
-        //.expect(format!("overflow 2 in sum_of_squares formula when multiplying by {}", 2 * n + 1).as_str())
         .unwrap_or_else(|| panic!("overflow 2 in sum_of_squares formula when multiplying {n}, {} and {}", n + 1, 2 * n + 1))
         / 6
 }
 
 pub fn difference(n: u32) -> u32 {
-    //todo!("difference between square of sum of 1...{n} and sum of squares of 1...{n}")
     square_of_sum(n) - sum_of_squares(n)
 }
 
